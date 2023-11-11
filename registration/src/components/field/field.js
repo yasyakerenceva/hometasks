@@ -1,31 +1,18 @@
 import styles from './field.module.css';
 
-export const Field = ({
-	state,
-	type,
-	name,
-	label,
-	entered,
-	error,
-	onChangeField,
-	onBlurField,
-}) => {
+export const Field = ({ type, name, label, active, error, register }) => {
 	return (
 		<div className={styles.field}>
 			<input
-				className={`${styles.input} ${state && styles.inputActive}`}
-				name={name}
+				className={`${styles.input} ${active && styles.inputActive}`}
 				id={name}
-				value={state}
 				type={type}
-				label={label}
-				onChange={onChangeField}
-				onBlur={onBlurField}
+				{...register}
 			/>
 			<label className={styles.label} htmlFor={name}>
 				{label}
 			</label>
-			{entered && error && (
+			{error && (
 				<div className={styles.error}>
 					<span className={styles.errorText}>{error}</span>
 				</div>
